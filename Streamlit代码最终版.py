@@ -116,31 +116,3 @@ if st.button("Submit Recommended Ratings"):
 
 
 
-import streamlit as st
-import os
-
-# 假设大文件夹的路径为 'path_to_main_folder'
-main_folder_path = '/Users/liushanshan/Desktop/深度学习大作业/picture 2'
-
-# Streamlit 应用界面
-st.title('景点图片展示')
-place_name = st.text_input('请输入景点名称：')
-
-# 搜索对应的文件夹
-if place_name:
-    for folder in os.listdir(main_folder_path):
-        if folder.lower() == place_name.lower():
-            # 找到对应文件夹后，读取其中的图片
-            photos_folder = os.path.join(main_folder_path, folder)
-            photos = os.listdir(photos_folder)
-            if photos:
-                # 选择第一张图片进行展示
-                photo_path = os.path.join(photos_folder, photos[0])
-                st.image(photo_path)
-            else:
-                st.write(f'在 {folder} 文件夹中没有找到图片。')
-            break
-    else:
-        st.write(f'没有找到名为 {place_name} 的文件夹。')
-
-
